@@ -1,0 +1,95 @@
+/* styles.css */
+
+/* Add black background and set font color to white */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+/* Style the search input and button in the navbar */
+.navbar-search {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search-input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 200px; /* Set width to match search input */
+}
+
+.search-button {
+  padding: 10px 20px; /* Adjust padding */
+  background-color: lightblue; /* Set background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Style the main container */
+.main-container {
+  display: grid;
+  grid-template-columns: auto 250px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Style the page title */
+.page-title {
+  text-align: center; /* Center the title */
+}
+
+/* Style error message */
+.error-message {
+  color: red;
+  text-align: center;
+}
+
+/* Style the movie list */
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+/* Style each movie item */
+.movie-item {
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+  transition: transform 0.2s;
+  margin: 10px; /* Add margin for spacing */
+}
+
+.movie-item:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Style movie posters */
+.movie-item img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Style movie titles */
+.movie-title {
+  margin: 10px 0 0;
+  color: lightblue; /* Green color for the title */
+}
+
+/* Style movie year */
+.movie-item p {
+  color: white;
+}
