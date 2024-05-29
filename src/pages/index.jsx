@@ -22,6 +22,7 @@ export const Index = () => {
   const basketList = useSelector((state) => state.basket.list);
   const [movieName, setMovieName] = useState("");
   const [error, setError] = useState(null);
+  const [showGoToList, setShowGoToList] = useState(false);
 
   const fetchMovies = useCallback(async (query) => {
     try {
@@ -85,6 +86,7 @@ export const Index = () => {
     return () => {
       if (basketList.id) dispatch(clearList());
       dispatch(addItemToList(id));
+      setShowGoToList(false); // Hide "Go to list" link when adding new items
     };
   };
 
@@ -104,6 +106,8 @@ export const Index = () => {
     dispatch(setListId(newList.id));
     dispatch(addListToBasket(newList));
     dispatch(setIsLoading(false));
+    setShowGoToList(true); // Show "Go to list" link after saving to basket
+    dispatch(clearList());
   };
 
   return (
@@ -154,26 +158,29 @@ export const Index = () => {
           className="list-container"
           style={{ backgroundColor: "white", color: "black" }}
         >
-          {basketList.id ? (
+          {showGoToList && basketList.id ? (
             <Link to={`/list/${basketList.id}`}>
               Go to list {basketList.name}
             </Link>
           ) : (
-            <input
-              type="text"
-              placeholder="Enter list name"
-              className="list-name"
-              disabled={isLoading}
-              onChange={changeListName}
-              value={basketList.name}
-            />
+            <>
+              <input
+                type="text"
+                placeholder="Enter list name"
+                className="list-name"
+                disabled={isLoading}
+                onChange={changeListName}
+                value={basketList.name}
+              />
+
+              <button
+                onClick={saveListToBasket}
+                disabled={isLoading || basketList.id}
+              >
+                Save to basket
+              </button>
+            </>
           )}
-          <button
-            onClick={saveListToBasket}
-            disabled={isLoading || basketList.id}
-          >
-            Save to basket
-          </button>
 
           <ul className="list">
             {basketList.items.map((item) => (
@@ -188,3 +195,4 @@ export const Index = () => {
     </>
   );
 };
+
